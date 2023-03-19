@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NewsCover />
+    <NewsCover :type="type" />
   </div>
 </template>
 
@@ -11,6 +11,11 @@ export default {
   name : "PoliticPage",
   components : {
     NewsCover,
+  },
+  data : function (){
+    return {
+      type : "Politic",
+    }
   }
 }
 </script>
