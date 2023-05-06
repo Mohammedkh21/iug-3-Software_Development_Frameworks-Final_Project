@@ -2,42 +2,47 @@
   <div class="container text-center col-8 pt-5">
     <div class="text-center col-12">
       <!-- v-for="num in 10" :key="num" -->
-      <NewsTemplate
-        :date="date"
-        :photo="photo"
-        :text="text"
-        :title="title"
-        v-for="num in 10"
-        :key="num"
-      />
+      <RouterLink
+        v-for="n in this.News"
+        :to="n.link"
+        style="text-decoration: none; color: black"
+      >
+        <NewsTemplate
+          :date="n.date"
+          :photo="n.img"
+          :description="n.description"
+          :title="n.title"
+          :link="n.link"
+        />
+      </RouterLink>
     </div>
   </div>
 </template>
 
 <script>
-import NewsTemplate from './NewsTemplate.vue'
+import NewsTemplate from "./NewsTemplate.vue";
 
 export default {
-  name: 'NewsCover',
+  name: "NewsCover",
   data: function () {
     return {
-      date: 'March 8 2023',
-      photo: './../../../src/assets/photo.jpg',
-      text: 'text text text text text text text text ',
-      title: 'title '
-    }
+      News: [],
+    };
   },
-  props: ['type'],
+  props: ["type"],
   components: {
-    NewsTemplate
+    NewsTemplate,
   },
-  created:function(){
-    this.title = this.type
-    console.log(this.type);
-    
-
-    
+  created: function () {
+    this.title = this.type;
+    this.getData();
   },
-  
-}
+  methods: {
+    async getData() {
+      const res = await fetch("http://localhost:5050/allNews/" + this.type);
+      const resNews = await res.json();
+      this.News = resNews;
+    },
+  },
+};
 </script>
