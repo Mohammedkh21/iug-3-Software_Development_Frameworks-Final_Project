@@ -8,13 +8,13 @@
 import NewsCover from "../../components/News/NewsCover.vue";
 
 export default {
-  name : "EconomyPage",
+  name : "AfricaPage",
   components : {
     NewsCover,
   },
   data : function (){
     return {
-      type : "Economy",
+      type : "africa",
     }
   }
 }

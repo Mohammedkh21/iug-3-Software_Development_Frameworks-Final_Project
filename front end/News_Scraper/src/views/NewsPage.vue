@@ -1,17 +1,38 @@
 <template>
-  <div class=" div1 d-flex justify-content-center align-items-center">
-    <h1 class="fs-1" >News</h1>
-  </div>
+  <NewsShow :img="data.img" :title="data.title" :text="data.text" />
 </template>
 
-
 <script>
+import NewsShow from "../components/News/NewsShow.vue";
+
 export default {
-  name : "NewsPage",
-}
+  name: "NewsPage",
+  data: function () {
+    return {
+      data: [],
+    };
+  },
+  components: {
+    NewsShow,
+  },
+  props: ["type", "slug"],
+  created: function () {
+    this.title = this.type;
+    this.getData();
+  },
+  methods: {
+    async getData() {
+      const res = await fetch(
+        "http://localhost:5050/News/" + this.type + "/" + this.slug
+      );
+      const resNews = await res.json();
+      this.data = resNews;
+    },
+  },
+};
 </script>
 <style>
-.div1{
+.div1 {
   height: calc(100vh - 75.5px);
 }
 </style>

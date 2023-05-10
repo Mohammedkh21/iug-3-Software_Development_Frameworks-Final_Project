@@ -8,13 +8,13 @@
 import NewsCover from "../../components/News/NewsCover.vue";
 
 export default {
-  name : "SportPage",
+  name : "BusinessPage",
   components : {
     NewsCover,
   },
   data : function (){
     return {
-      type : "Sport",
+      type : "business",
     }
   }
 }

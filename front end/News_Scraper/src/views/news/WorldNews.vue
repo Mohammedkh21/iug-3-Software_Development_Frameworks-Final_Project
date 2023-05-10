@@ -8,13 +8,13 @@
 import NewsCover from "../../components/News/NewsCover.vue";
 
 export default {
-  name : "PoliticPage",
+  name : "WorldNewsPage",
   components : {
     NewsCover,
   },
   data : function (){
     return {
-      type : "Politic",
+      type : "news",
     }
   }
 }

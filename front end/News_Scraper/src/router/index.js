@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 // import HomeView from '../views/HomeView.vue'
 import NewsPage from '../views/NewsPage.vue'
-import PoliticPage from '../views/news/PoliticsNews.vue'
-import SportPage from '../views/news/SportsNews.vue'
-import EconomyPage from '../views/news/EconomyNews.vue'
+import WorldNewsPage from '../views/news/WorldNews.vue'
+import BusinessPage from '../views/news/BusinessNews.vue'
+import AfricaPage from '../views/news/AfricaNews.vue'
 
 
 
@@ -25,24 +25,25 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path : "/",
+      path : "/:type/:slug",
       name : "news",
       component : NewsPage,
+      props: true
     },
     {
-      path : "/Politic",
-      name : "Politic",
-      component : PoliticPage,
+      path : "/WorldNews",
+      name : "WorldNews",
+      component : WorldNewsPage,
     },
     {
-      path : "/Sport",
-      name : "Sport",
-      component : SportPage,
+      path : "/Business",
+      name : "Business",
+      component : BusinessPage,
     },
     {
-      path : "/Economy",
-      name : "Economy",
-      component : EconomyPage,
+      path : "/Africa",
+      name : "Africa",
+      component : AfricaPage,
     },
   ]
 })
