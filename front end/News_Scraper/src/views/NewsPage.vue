@@ -4,12 +4,13 @@
 
 <script>
 import NewsShow from "../components/News/NewsShow.vue";
+import api from "../api";
 
 export default {
   name: "NewsPage",
   data: function () {
     return {
-      data: [],
+      data: {},
     };
   },
   components: {
@@ -17,18 +18,12 @@ export default {
   },
   props: ["type", "slug"],
   created: function () {
-    this.title = this.type;
-    this.getData();
+    api.getNews(this.type, this.slug).then((result) => {
+      console.log(result);
+      this.data = result.data;
+    });
   },
-  methods: {
-    async getData() {
-      const res = await fetch(
-        "http://localhost:5050/News/" + this.type + "/" + this.slug
-      );
-      const resNews = await res.json();
-      this.data = resNews;
-    },
-  },
+  methods: {},
 };
 </script>
 <style>
