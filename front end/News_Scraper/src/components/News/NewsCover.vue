@@ -21,6 +21,8 @@
 
 <script>
 import NewsTemplate from "./NewsTemplate.vue";
+import api from "../../api";
+import { VueSessionStorage } from "vue-sessionstorage";
 
 export default {
   name: "NewsCover",
@@ -34,15 +36,10 @@ export default {
     NewsTemplate,
   },
   created: function () {
-    this.title = this.type;
-    this.getData();
+    api.getAllNews(this.type).then((result) => {
+      this.News = result.data;
+    });
   },
-  methods: {
-    async getData() {
-      const res = await fetch("http://localhost:5050/allNews/" + this.type);
-      const resNews = await res.json();
-      this.News = resNews;
-    },
-  },
+  methods: {},
 };
 </script>
