@@ -22,7 +22,7 @@
 <script>
 import NewsTemplate from "./NewsTemplate.vue";
 import api from "../../api";
-import { VueSessionStorage } from "vue-sessionstorage";
+import router from "../../router";
 
 export default {
   name: "NewsCover",
@@ -37,6 +37,9 @@ export default {
   },
   created: function () {
     api.getAllNews(this.type).then((result) => {
+      if (result.data.status >= 400) {
+        router.push({ name: "welcomePage" });
+      }
       this.News = result.data;
     });
   },

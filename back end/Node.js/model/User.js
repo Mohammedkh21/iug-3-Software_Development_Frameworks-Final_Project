@@ -78,13 +78,6 @@ class User {
   static login(loginData){
     return new Promise((resolve , reject)=>{
       
-      // const validation = userValidator.validate(loginData);
-      // if(validation.error){ 
-      //   const error = new Error(validation.error.message)
-      //   error.status = 400 
-      //   return resolve(error); 
-      // }
-      
       dbConnection('users',async (users)=>{
         try{
           const user = await users.findOne({email:loginData.email}); 
