@@ -52,8 +52,6 @@ async function newsScraper(type,slug) {
   return await axios(url).then((response) => {
     const html_data = response.data;
     const $ = cheerio.load(html_data);
-    
-    console.log($('.layout__content h1').text());
      
     $('.layout__content ').find('p').each((Index, el) => {
       news.text += $(el).text();

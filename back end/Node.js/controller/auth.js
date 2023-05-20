@@ -1,10 +1,10 @@
 const { User } = require('../model')
 const createError = require('http-errors')
+const jwt = require('jsonwebtoken')
 
 const signup = (req,res,next)=>{
   
   const userData = req.body;
-  console.log(userData);
   const validation = User.validate(userData)
   if (validation.error) {
     const error = createError(400, validation.error.message)
@@ -41,7 +41,17 @@ const login = (req,res,next)=>{
       if (result instanceof Error) {
           return  next(createError(result.status, result.message))
       }
-      res.json(result)
+      const SECRET_KEY = "74108520";
+      const token = jwt.sign({
+        _id: result._id,
+        name : result.name,
+        email : result.email
+      },SECRET_KEY)
+      
+      res.json({
+        status :true,
+        token
+      })
     })
     .catch(err => {
         next(createError(err.statusCode, err.message))

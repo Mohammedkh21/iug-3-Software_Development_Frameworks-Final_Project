@@ -87,7 +87,6 @@ export default {
   created: function () {},
   watch: {
     $route(to, from) {
-      console.log(to);
       if (session.getItem("token")) {
         this.auth = true;
         if (this.unAuth.includes(to.name)) {

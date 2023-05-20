@@ -83,9 +83,9 @@ export default {
       const data = form.target.elements;
 
       api.login(data).then((result) => {
-        if (result.data._id) {
-          console.log(result.data);
-          session.setItem("token", result.data._id);
+        console.log(result);
+        if (result.data.status) {
+          session.setItem("token", result.data.token);
           router.push({ path: "/" });
         } else {
           this.error = result.data.message;

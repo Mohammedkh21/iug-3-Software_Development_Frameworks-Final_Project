@@ -9,14 +9,11 @@ const app = express();
 
 
 
-middleware(app);
+middleware.global(app);
 
 app.use(cors());
 
 Routes(app);
-
-
-
 
 app.use((req,res,next)=>{
   next(Error(404));
